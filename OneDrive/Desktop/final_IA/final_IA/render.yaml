@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: impact-analysis-agent
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python impact_agent.py
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: HOST
+        value: 0.0.0.0
+      - key: LOG_LEVEL
+        value: info
+      - key: GENERATED_FILES_DIR
+        value: generated_files
+      - key: START_PORT
+        value: 10000
+      - key: PORT_SEARCH_RANGE
+        value: 1
+      - key: GIT_CLONE_TIMEOUT
+        value: 60
+      - key: MAX_TOKENS
+        value: 4500
+      - key: MAX_ARCH_CHARS
+        value: 3000
+      - key: MAX_FILE_SIZE
+        value: 10485760
+      - key: MAX_TEXT_LENGTH
+        value: 50000
+      - key: MIN_CONTENT_LENGTH
+        value: 10
+      - key: MAX_LANGUAGES
+        value: 5
+      - key: MAX_FILES
+        value: 10
+      - key: EXCLUDED_DIRS
+        value: node_modules,__pycache__
+      - key: RATE_LIMIT_BASE_WAIT
+        value: 60
+      - key: RATE_LIMIT_MULTIPLIER
+        value: 30
+      - key: ALLOWED_ORIGINS
+        value: "*"

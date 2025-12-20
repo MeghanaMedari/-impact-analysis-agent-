@@ -740,12 +740,8 @@ async def download_document(document_id: str, doc_type: str, format_type: str):
 def main():
     """Main function to start the server"""
     try:
-        port_env = os.getenv("PORT", "dynamic")
-        if port_env == "dynamic":
-            port_to_use = find_available_port()
-        else:
-            port_to_use = int(port_env)
-        
+        # For Render deployment - PORT is provided by Render
+        port_to_use = int(os.getenv("PORT", "10000"))
         host = os.getenv("HOST", "0.0.0.0")
         
         os.makedirs(GENERATED_FILES_DIR, exist_ok=True)

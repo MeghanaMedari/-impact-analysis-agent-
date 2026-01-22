@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>stress detection</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="../static/asset/css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- Font Awesome CSS -->
+        <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+        
+        
+        <!-- Animate CSS -->
+        <link href="../static/css/animate.css" rel="stylesheet" >
+        
+        <!-- Owl-Carousel -->
+        <link rel="stylesheet" href="../static/css/owl.carousel.css" >
+        <link rel="stylesheet" href="../static/css/owl.theme.css" >
+        <link rel="stylesheet" href="../static/css/owl.transitions.css" >
+    
+        <!-- Custom CSS -->
+        <link href="../static/css/style.css" rel="stylesheet">
+        <link href="../static/css/responsive.css" rel="stylesheet">
+        
+        <!-- Colors CSS -->
+        <link rel="stylesheet" type="text/css" href="../static/css/color/green.css">
+        
+        
+        
+        <!-- Colors CSS -->
+        <link rel="stylesheet" type="text/css" href="../static/css/color/green.css" title="green">
+        <link rel="stylesheet" type="text/css" href="../static/css/color/light-red.css" title="light-red">
+        <link rel="stylesheet" type="text/css" href="../static/css/color/blue.css" title="blue">
+        <link rel="stylesheet" type="text/css" href="../static/css/color/light-blue.css" title="light-blue">
+        <link rel="stylesheet" type="text/css" href="../static/css/color/yellow.css" title="yellow">
+        <link rel="stylesheet" type="text/css" href="../static/css/color/light-green.css" title="light-green">
+         <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/Chart.min.js"></script> 
+        <!-- Custom Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+        
+        
+        <!-- Modernizer js -->
+        <script src="../static/js/modernizr.custom.js"></script>
+    
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #1DA1F2;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="index">
+    
+    
+    <!-- Styleswitcher
+================================================== -->
+        <div class="colors-switcher">
+            <a id="show-panel" class="hide-panel"><i class="fa fa-tint"></i></a>        
+                <ul class="colors-list">
+                    <li><a title="Light Red" onClick="setActiveStyleSheet('light-red'); return false;" class="light-red"></a></li>
+                    <li><a title="Blue" class="blue" onClick="setActiveStyleSheet('blue'); return false;"></a></li>
+                    <li class="no-margin"><a title="Light Blue" onClick="setActiveStyleSheet('light-blue'); return false;" class="light-blue"></a></li>
+                    <li><a title="Green" class="green" onClick="setActiveStyleSheet('green'); return false;"></a></li>
+                    
+                    <li class="no-margin"><a title="light-green" class="light-green" onClick="setActiveStyleSheet('light-green'); return false;"></a></li>
+                    <li><a title="Yellow" class="yellow" onClick="setActiveStyleSheet('yellow'); return false;"></a></li>
+                    
+                </ul>
+
+        </div>  
+<!-- Styleswitcher End
+================================================== -->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Stress Detection</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="{{ url_for('first')}}">Home</a>
+                    </li>
+                    
+                      <li>
+                        <a class="page-scroll" href="{{ url_for('performance')}}">performance_analysis</a>
+                    </li>
+                     </li>
+                                          <li>
+                        <a class="page-scroll" href="{{ url_for('chart3')}}">chart</a>
+                    </li>
+					 </li>
+                                          <li>
+                        <a class="page-scroll" href="{{ url_for('first')}}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    
+    
+    
+    <!-- Start Home Page Slider -->
+    <section id="page-top">
+        <!-- Carousel -->
+        <div id="main-slide" class="carousel slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                 
+                 
+            </ol>
+            <!--/ Indicators end-->
+
+            <!-- Carousel inner -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="img-responsive" src="../static/images/3.jpg" alt="slider">
+                    <div class="slider-content">
+                        <div class="col-md-12 text-center">
+                            <h1 class="animated3">
+                                <span><strong>Detection of </strong> Stress </span>
+                            </h1>
+                            <p class="animated2">in IT Employees
+using Machine Learning Technique</p>	
+                           
+                        </div>
+                    </div>
+                </div>
+                <!--/ Carousel item end -->
+                
+                
+                <!--/ Carousel item end -->
+            </div>
+            <!-- Carousel inner end-->
+
+            <!-- Controls -->
+      
+        </div>
+        <!-- /carousel -->
+    </section>
+   
+        
+
+    
+
+
+    <!-- Start Feature Section -->
+        <section id="service" class="services-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title text-center">
+                            <h3>Chart</h3>
+                            
+                        </div>
+
+
+                        <div class="row justify-content-center">
+				 
+                            <div class="section-title">
+							
+							
+							
+							<body> 
+    <div class="container">
+      <div class="header">
+      
+       
+      </div>
+    <canvas id="chart" width="600" height="400"></canvas>
+  
+         
+<script>
+ 
+   // bar chart data
+   var chartData = {
+   labels : [{% for item in labels %}
+                  "{{item}}",
+              {% endfor %}],
+   datasets : [
+      {
+            label: '{{legend}}',
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            bezierCurve : false,
+            data : [{% for item in values %}
+                      {{item}},
+                    {% endfor %}]
+      }]
+   }
+ 
+    Chart.defaults.global.animationSteps = 50;
+    Chart.defaults.global.tooltipYPadding = 16;
+    Chart.defaults.global.tooltipCornerRadius = 0;
+    Chart.defaults.global.tooltipTitleFontStyle = "normal";
+    Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+    Chart.defaults.global.animationEasing = "easeOutBounce";
+    Chart.defaults.global.responsive = false;
+    Chart.defaults.global.scaleLineColor = "black";
+    Chart.defaults.global.scaleFontSize = 16;
+ 
+   // get bar chart canvas
+   var ctx = document.getElementById("chart").getContext("2d");
+ 
+   steps = 10
+   max = 40
+   
+   var BarChartDemo = new Chart(ctx).Bar(chartData, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true,
+        bezierCurve: false,
+ 
+   });
+   
+</script>
+</body>
+ 
+				 
+							
+ 
+							
+							
+							
+							
+                      
+            </div>
+                             
+                             
+                             
+                             
+                             
+                             
+                            </div>
+                    </div>
+                </div>
+                 
+        </section>
+        <!-- End Feature Section -->
+    
+    
+    
+    <!-- Start Fun Facts Section -->
+   
+    <!-- End Fun Facts Section -->
+
+
+
+ 
+    <!-- End Team Member Section -->
+
+
+
+    <!-- Start Pricing Table Section -->
+   
+    
+    
+    <!-- Start Latest News Section -->
+     
+
+
+
+    
+    
+    
+    <!-- Start Testimonial Section -->
+ 
+    <!-- End Testimonial Section -->
+    
+    
+
+    <!-- Clients Aside -->
+   
+    
+    
+    
+ 
+        <footer class="style-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                         
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                        <div class="footer-social text-center">
+                         
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                        <div class="footer-link">
+ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+
+    <div id="loader">
+        <div class="spinner">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+        </div>
+    </div>
+
+    
+
+    <script src="../static/js/jquery-2.1.1.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../static/asset/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../static/js/jquery.easing.1.3.js"></script>
+    <script src="../static/js/classie.js"></script>
+    <script src="../static/js/count-to.js"></script>
+    <script src="../static/js/jquery.appear.js"></script>
+    <script src="../static/js/cbpAnimatedHeader.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
+	<script src="../static/js/jquery.fitvids.js"></script>
+	<script src="../static/js/styleswitcher.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../static/js/jqBootstrapValidation.js"></script>
+    <script src="../static/js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../static/js/script.js"></script>
+
+</body>
+
+</html>
